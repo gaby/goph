@@ -111,10 +111,10 @@ func main() {
 
 	var opts []goph.Option
 
-	if agent || goph.HasAgent() {
-		opts = append(opts, goph.WithDefaultAgent())
-	} else if pass {
+	if pass {
 		opts = append(opts, goph.WithPassword(askPass("Enter SSH Password: ")))
+	} else if agent || goph.HasAgent() {
+		opts = append(opts, goph.WithDefaultAgent())
 	} else {
 		opts = append(opts, goph.WithKeyFile(key, getPassphrase(passphrase)))
 	}
